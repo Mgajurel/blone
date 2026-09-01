@@ -3,7 +3,7 @@ id: 001
 title: Walking skeleton — hotkey save to tagged + searchable
 type: HITL
 labels: [needs-triage]
-status: open
+status: in-progress
 blocked-by: []
 ---
 
