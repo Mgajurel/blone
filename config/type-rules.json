@@ -1,0 +1,20 @@
+{
+  "$comment": "Canonical type-rule table (issue 003). Types are deterministic where the domain IS the type; everything else falls to the model's guess (see tagging-prompt.md) with human veto in the UI (issue 006). Precedence: manual > rule > ai. These rules must be mirrored in Karakeep's rule engine (Settings -> Rule Engine) — one rule per uiContains string: WHEN bookmark is added, IF URL contains <uiContains>, THEN add tag <type/...>. The smoke script uses `hosts` for exact-hostname matching; `uiContains` strings are substring-safe forms for Karakeep's 'URL contains' condition (bare 'x.com' would match spacex.com).",
+  "rules": [
+    {
+      "type": "type/tweet",
+      "hosts": ["x.com", "twitter.com", "mobile.twitter.com"],
+      "uiContains": ["//x.com/", "//twitter.com/", "//mobile.twitter.com/"]
+    },
+    {
+      "type": "type/video",
+      "hosts": ["youtube.com", "www.youtube.com", "youtu.be", "vimeo.com"],
+      "uiContains": ["//www.youtube.com/", "//youtube.com/", "//youtu.be/", "//vimeo.com/"]
+    },
+    {
+      "type": "type/article",
+      "hosts": ["news.ycombinator.com"],
+      "uiContains": ["//news.ycombinator.com/"]
+    }
+  ]
+}

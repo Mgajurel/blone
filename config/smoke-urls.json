@@ -1,0 +1,38 @@
+{
+  "$comment": "Smoke-test corpus for issue 003: ~20 real, stable URLs across the type taxonomy plus two text notes. `expect` is the type the pipeline SHOULD land on — exact for rule-driven entries, best-judgment for model-guessed ones (misses there are data for the quality report, not necessarily bugs). Tweets are expected to type correctly via rules even when X blocks the crawler (accepted PRD risk).",
+  "links": [
+    { "url": "https://twitter.com/jack/status/20", "expect": "type/tweet", "via": "rule" },
+    { "url": "https://x.com/karpathy/status/1886192184808149383", "expect": "type/tweet", "via": "rule" },
+    { "url": "https://news.ycombinator.com/item?id=1", "expect": "type/article", "via": "rule" },
+    { "url": "https://news.ycombinator.com/item?id=8863", "expect": "type/article", "via": "rule" },
+    { "url": "https://www.youtube.com/watch?v=jNQXAC9IVRw", "expect": "type/video", "via": "rule" },
+    { "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ", "expect": "type/video", "via": "rule" },
+    { "url": "https://www.paulgraham.com/greatwork.html", "expect": "type/article", "via": "ai" },
+    { "url": "https://www.paulgraham.com/ds.html", "expect": "type/article", "via": "ai" },
+    { "url": "https://danluu.com/simple-architectures/", "expect": "type/article", "via": "ai" },
+    { "url": "https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/", "expect": "type/article", "via": "ai" },
+    { "url": "https://blog.samaltman.com/how-to-be-successful", "expect": "type/article", "via": "ai" },
+    { "url": "https://en.wikipedia.org/wiki/Zettelkasten", "expect": "type/article", "via": "ai" },
+    { "url": "https://www.raycast.com/", "expect": "type/product", "via": "ai" },
+    { "url": "https://obsidian.md/", "expect": "type/product", "via": "ai" },
+    { "url": "https://tailscale.com/", "expect": "type/product", "via": "ai" },
+    { "url": "https://linear.app/", "expect": "type/product", "via": "ai" },
+    { "url": "https://www.awwwards.com/", "expect": "type/design", "via": "ai" },
+    { "url": "https://lawsofux.com/", "expect": "type/design", "via": "ai" },
+    { "url": "https://www.refactoringui.com/", "expect": "type/design", "via": "ai" },
+    { "url": "https://brutalistwebsites.com/", "expect": "type/design", "via": "ai" },
+    { "url": "https://github.com/karakeep-app/karakeep", "expect": "type/product", "via": "ai" }
+  ],
+  "notes": [
+    {
+      "text": "Idea: the status line should show a tiny sparkline of saves-per-day — waybar aesthetic, zero chrome. Maybe unicode block characters.",
+      "expect": "type/link",
+      "via": "ai"
+    },
+    {
+      "text": "Brutalist pricing pages convert surprisingly well when the product is developer tooling — big mono type, one column, no testimonials. Collect examples of this pattern.",
+      "expect": "type/link",
+      "via": "ai"
+    }
+  ]
+}
