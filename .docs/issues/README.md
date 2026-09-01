@@ -6,7 +6,7 @@ File-based tracker (no Linear/Jira). One markdown file per issue; frontmatter ho
 |---|---|---|---|---|
 | 001 | [Walking skeleton — hotkey save to tagged + searchable](001-walking-skeleton.md) | HITL | — | done |
 | 002 | [Design pass in Claude Design (artboards 1–7)](002-claude-design-pass.md) | HITL | — | open |
-| 003 | [Tagging pipeline — rules, prompt, smoke report](003-tagging-pipeline.md) | AFK | 001 | open |
+| 003 | [Tagging pipeline — rules, prompt, smoke report](003-tagging-pipeline.md) | AFK | 001 | in-progress |
 | 004 | [Feed skeleton UI — real saves, j/k, status line](004-feed-skeleton-ui.md) | AFK | 001 (soft: 002) | open |
 | 005 | [Search slice — query-compiler + live qualifiers](005-search-slice.md) | AFK | 004 | open |
 | 006 | [Curation slice — tag editor, precedence, detail view](006-curation-slice.md) | AFK | 004 | open |

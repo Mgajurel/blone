@@ -3,7 +3,7 @@ id: 003
 title: Tagging pipeline — type rules, custom prompt, 20-URL smoke report
 type: AFK
 labels: [needs-triage]
-status: open
+status: in-progress
 blocked-by: [001]
 ---
 
