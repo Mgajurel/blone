@@ -1,0 +1,9 @@
+# secrets
+.env
+
+# node (UI slices)
+node_modules/
+dist/
+
+# os
+.DS_Store
