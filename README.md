@@ -36,9 +36,33 @@ Tweet-saving contract (v0, stock extension): save from the tweet's **permalink**
 
 Save a real article, give the pipeline ~a minute, then in the Karakeep UI check the save has: title + description, AI tags, a one-line summary — and that searching a phrase from the article **body** (not its title) finds it. That's extracted-text search working end-to-end.
 
+## Tagging pipeline
+
+Type assignment is layered (precedence: manual > rule > ai). One-time setup in the Karakeep UI:
+
+1. **Custom prompt** — paste the block from `config/tagging-prompt.md` into *Settings → AI Settings → Prompt Customization*. It makes the model emit exactly one `type/` tag (closed set) plus 2–5 lowercase topic tags.
+2. **Type rules** — mirror `config/type-rules.json` in *Settings → Rule Engine*: for each string below, a rule *when a bookmark is added, if URL contains `<string>`, then attach tag* (combine per type with OR conditions if your Karakeep version supports condition groups):
+
+   | URL contains | attach tag |
+   |---|---|
+   | `//x.com/` · `//twitter.com/` · `//mobile.twitter.com/` | `type/tweet` |
+   | `//www.youtube.com/` · `//youtube.com/` · `//youtu.be/` · `//vimeo.com/` | `type/video` |
+   | `//news.ycombinator.com/` | `type/article` |
+
+   `config/type-rules.json` is canonical — when you add a rule there, add it in the UI too.
+3. **API key** — create one in *Settings → API Keys* and put it in `.env` as `KARAKEEP_API_KEY=` (scripts and the future UI use it).
+
+Then judge quality with the smoke test (~20 real URLs through the live pipeline, report lands in `.docs/reports/003-smoke-report.md`):
+
+```sh
+node scripts/smoke-test.mjs
+```
+
 ## Configuration
 
 Archival policy per the PRD — extracted text stored, pixels off — is explicit in `docker-compose.yml` (`CRAWLER_STORE_SCREENSHOT`, `CRAWLER_FULL_PAGE_ARCHIVE`, …). Flip those to opt in to offline snapshots. Model, context length, and timeouts live there too; the model is also overridable via `INFERENCE_TEXT_MODEL` in `.env`.
+
+**Cloud escape hatch** (documented, not default): if local tagging quality disappoints after prompt/model tuning, point Karakeep at a cloud model instead — set `OPENAI_API_KEY` (plus `OPENAI_BASE_URL` for any OpenAI-compatible endpoint, e.g. Anthropic's) and `INFERENCE_TEXT_MODEL` in `.env`, remove `OLLAMA_BASE_URL` from the compose environment, `docker compose up -d`. Config change only; nothing else moves.
 
 ## Backup
 
